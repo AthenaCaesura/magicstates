@@ -1,0 +1,12 @@
+magicland/*
+Python/__pycache__
+Python/.mypy_cache
+Python/tmp.py
+Python/CACHEDIR.TAG
+*.pdf
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+Simulation_Data/*

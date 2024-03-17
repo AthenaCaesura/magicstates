@@ -1,0 +1,3 @@
+[[tool.mypy.overrides]]
+module = ["scipy.*","mpmath.*"]
+ignore_missing_imports = true
