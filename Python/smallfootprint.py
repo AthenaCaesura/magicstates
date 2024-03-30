@@ -874,8 +874,8 @@ def cost_of_two_level_15to1_small_footprint(
     def logerr2(d):
         return float(20284 / pout * d * plog(pphys, d) - 0.01)
 
-    reqdist1 = int(2 * round(optimize.root(logerr1, 3, method="hybr").x[0] / 2) + 1)
-    reqdist2 = int(2 * round(optimize.root(logerr2, 3, method="hybr").x[0] / 2) + 1)
+    # reqdist1 = int(2 * round(optimize.root(logerr1, 3, method="hybr").x[0] / 2) + 1)
+    # reqdist2 = int(2 * round(optimize.root(logerr2, 3, method="hybr").x[0] / 2) + 1)
 
     # Print output error, failure probability, space cost, time cost and space-time cost
     nqubits = 2 * (

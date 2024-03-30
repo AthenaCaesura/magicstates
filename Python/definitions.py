@@ -1,5 +1,6 @@
 import mpmath
 from mpmath import mp
+mp.prec = 128
 from typing import List
 
 # Pauli matrices and projector |+><+|
