@@ -80,8 +80,8 @@ def log_simulation(sim: SimulationOneLevel15to1SmallFootprint) -> None:
 def search_for_optimal_factory():
 
     round_number = 0
-    num_threads = 10
-    all_combos = list(itertools.product(range(1, 12, 2), repeat=3))
+    num_threads = 20
+    all_combos = list(itertools.product(range(3, 22, 2), range(1, 8, 2), range(1, 8, 2)))
 
     try:
         while len(all_combos) > 0:
@@ -106,7 +106,7 @@ def search_for_optimal_factory():
                     log_simulation(job.get())
     finally:
         df.to_csv(
-            f'Simulation_Data/small_footprint_two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
+            f'Simulation_Data/small_footprint_one_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
             mode="a",
             index=False,
             header=True,

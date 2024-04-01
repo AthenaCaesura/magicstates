@@ -5,11 +5,7 @@ import matplotlib.pyplot as plt
 # Load the data from CSV
 data = pd.read_csv(
     "simulation_data/"
-<<<<<<< HEAD
-    "small_footprint_two_level_15to1_simulations-2024-03-29-21-11"
-=======
-    "small_footprint_two_level_15to1_simulations-2024-03-30-07-42"
->>>>>>> 0bee96556c351a99215db789784de7c6c8ec3ac3
+    "small_footprint_one_level_15to1_simulations-2024-04-01-10-42"
     ".csv"
 )
 
