@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # Load the data from CSV
 data = pd.read_csv(
     "simulation_data/"
-    "small_footprint_two_level_15to1_simulations-2024-03-25-02-15"
+    "small_footprint_two_level_15to1_simulations-2024-03-29-21-11"
     ".csv"
 )
 

@@ -1,4 +1,7 @@
 import mpmath as mp
+
+mp.prec = 128
+
 from multiprocessing import Pool
 import pandas as pd
 from datetime import datetime
@@ -14,7 +17,6 @@ def objective(factory: MagicStateFactory) -> mp.mpf:
     return mp.mpf(factory.distilled_magic_state_error_rate) / factory.qubits
 
 
-mp.prec = 128
 step_size: int = 2
 pphys = 10**-5
 
@@ -75,19 +77,11 @@ def log_simulation(sim: SimulationOneLevel15to1SmallFootprint) -> None:
     df.loc[len(df)] = new_row  # type: ignore
 
 
-def search_for_optimal_factory(
-    initial_center_dx,
-    initial_center_dz,
-    initial_center_dm,
-    initial_center_dx2,
-    initial_center_dz2,
-    initial_center_dm2,
-):
+def search_for_optimal_factory():
 
     round_number = 0
     num_threads = 10
-
-    all_combos = list(itertools.product(range(3, 12, 2), repeat=6))
+    all_combos = list(itertools.product(range(1, 12, 2), repeat=3))
 
     try:
         while len(all_combos) > 0:
@@ -99,20 +93,18 @@ def search_for_optimal_factory(
                 print(f"Round {round_number}")
 
                 jobs = []
-                for dx, dz, dm, dx2, dz2, dm2 in chunk:
+                for dx, dz, dm in chunk:
                     jobs += [
                         pool.apply_async(
                             SimulationOneLevel15to1SmallFootprint,
-                            (dx, dz, dm, dx2, dz2, dm2),
+                            (dx, dz, dm),
                         )
                     ]
 
                 pool.close()
                 for job in jobs:
                     log_simulation(job.get())
-
-    except KeyboardInterrupt:
-        pool.terminate()
+    finally:
         df.to_csv(
             f'Simulation_Data/small_footprint_two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
             mode="a",
@@ -120,21 +112,6 @@ def search_for_optimal_factory(
             header=True,
         )
 
-    df.to_csv(
-        f'Simulation_Data/small_footprint_two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
-        mode="a",
-        index=False,
-        header=True,
-    )
-
 
 if __name__ == "__main__":
-
-    search_for_optimal_factory(
-        initial_center_dx=5,
-        initial_center_dz=3,
-        initial_center_dm=3,
-        initial_center_dx2=9,
-        initial_center_dz2=7,
-        initial_center_dm2=7,
-    )
+    search_for_optimal_factory()
