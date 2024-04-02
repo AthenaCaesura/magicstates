@@ -92,7 +92,18 @@ def search_for_optimal_factory():
 
     round_number = 0
     num_threads = 20
-    all_combos = list(itertools.product(range(3, 12, 2), repeat=6))
+    all_combos = list(
+        itertools.product(
+            range(3, 16, 2),
+            range(1, 8, 2),
+            range(1, 8, 2),
+            range(3, 16, 2),
+            range(1, 8, 2),
+            range(1, 8, 2),
+        )
+    )
+
+    print(f"Total rounds = {math.ceil(len(all_combos)/num_threads)}")
 
     try:
         while len(all_combos) > 0:

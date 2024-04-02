@@ -83,6 +83,8 @@ def search_for_optimal_factory():
     num_threads = 20
     all_combos = list(itertools.product(range(3, 22, 2), range(1, 8, 2), range(1, 8, 2)))
 
+    print(f"Total rounds = {math.ceil(len(all_combos)/num_threads)}")
+
     try:
         while len(all_combos) > 0:
             chunk = all_combos[:num_threads]
