@@ -411,7 +411,7 @@ def cost_of_one_level_15to1_small_footprint(
     reqdist2 = int(2 * round(optimize.root(logerr2, 3, method="hybr").x[0] / 2) + 1)
 
     return MagicStateFactory(
-        name=f"fmall footprint 15-to-1 with pphys={float(pphys)}, dx={dx}, dz={dz}, dm={dm}",
+        name=f"Small footprint 15-to-1 with pphys={float(pphys)}, dx={dx}, dz={dz}, dm={dm}",
         distilled_magic_state_error_rate=float(pout),
         qubits=2 * (2 * dx * (dx + 4 * dz) + dm),
         distillation_time_in_cycles=float(12 * dm / (1 - pfail)),
