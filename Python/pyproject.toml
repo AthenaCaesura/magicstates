@@ -1,0 +1,21 @@
+[project]
+name = "litinski-factories"
+version = "0.1.0"
+description = "Simulation of Magic State Factories from Daniel Litinski's Magic State Distillation: Not as Costly as You Think"
+dependencies = [
+    "numpy",
+    "scipy",
+    "mpmath",
+    "jupyter",
+    "matplotlib",
+    "black",
+    "plotly",
+    "mypy",
+    "mypy-extensions",
+    "lru_cache",
+]
+
+[[tool.mypy.overrides]]
+module = ["scipy.*","mpmath.*"]
+ignore_missing_imports = true
+

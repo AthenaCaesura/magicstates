@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: litinski-factories
+Version: 0.1.0
+Summary: Simulation of Magic State Factories from Daniel Litinski's Magic State Distillation: Not as Costly as You Think
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: mpmath
+Requires-Dist: jupyter
+Requires-Dist: matplotlib
+Requires-Dist: black
+Requires-Dist: plotly
+Requires-Dist: mypy
+Requires-Dist: mypy-extensions
+Requires-Dist: lru_cache
