@@ -1,0 +1,10 @@
+numpy
+scipy
+mpmath
+jupyter
+matplotlib
+black
+plotly
+mypy
+mypy-extensions
+lru_cache
