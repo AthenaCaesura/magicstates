@@ -7,7 +7,6 @@ from datetime import datetime
 
 from magic_state_factory import MagicStateFactory
 from twolevel15to1 import cost_of_two_level_15to1
-from smallfootprint import cost_of_two_level_15to1_small_footprint
 import math
 import itertools
 
@@ -17,7 +16,7 @@ def objective(factory: MagicStateFactory) -> mp.mpf:
 
 
 step_size: int = 2
-pphys = 10**-5
+pphys = 10**-4
 
 
 # find the best factory which has less than 1000 qubits.
@@ -51,7 +50,7 @@ class SimulationTwoLevel15to1SmallFootprint:
         )
 
     def rating(self) -> mp.mpf:
-        return -math.log10(self.factory.distilled_magic_state_error_rate)
+        return self.factory.distilled_magic_state_error_rate
 
 
 df = pd.DataFrame(
@@ -133,7 +132,7 @@ def search_for_optimal_factory():
                     log_simulation(job.get())
     finally:
         df.to_csv(
-            f'Simulation_Data/small_footprint_two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
+            f'Simulation_Data/two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
             mode="a",
             index=False,
             header=True,
