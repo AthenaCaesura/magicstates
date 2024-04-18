@@ -20,6 +20,6 @@ selected_two_level_factories = [
 ]
 
 for factory_params in selected_one_level_factories:
-    print(cost_of_one_level_15to1_small_footprint(10**-3, *factory_params))
+    print(cost_of_one_level_15to1_small_footprint(10**-5, *factory_params))
 for factory_params in selected_two_level_factories:
-    print(cost_of_two_level_15to1_small_footprint(10**-3, *factory_params))
+    print(cost_of_two_level_15to1_small_footprint(10**-5, *factory_params))
