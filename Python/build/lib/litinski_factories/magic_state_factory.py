@@ -18,5 +18,6 @@ class MagicStateFactory:
             f"Qubits: {self.qubits}\n"
             f"Code cycles: {self.distillation_time_in_cycles:.1f}\n"
             f"T-gates per distillation: {self.n_t_gates_produced_per_distillation}\n"
+            f"Footprint: {self.dimensions}\n"
             f"Qubitcycles: {int(self.qubits*self.distillation_time_in_cycles/self.n_t_gates_produced_per_distillation)}\n"
         )

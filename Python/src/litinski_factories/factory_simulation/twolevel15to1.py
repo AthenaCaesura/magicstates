@@ -361,8 +361,6 @@ def cost_of_two_level_15to1(
         0.5 * (dx2 / dz2) * pz2 * l1time,
     )
 
-    breakpoint()
-
     # Compute level-2 failure probability as the probability to measure qubits 2-5 in the |+> state
     pfail2 = (1 - trace(kron(one, projx, projx, projx, projx) * out2)).real
 
@@ -381,7 +379,7 @@ def cost_of_two_level_15to1(
     def logerr1(d):
         return float(231 / pout * d * plog(pphys, d) - 0.01)
 
-    def logerr2(d):
+    def logerr2(d
         return float(20284 / pout * d * plog(pphys, d) - 0.01)
 
     reqdist1 = int(2 * round(optimize.root(logerr1, 3, method="hybr").x[0] / 2) + 1)
@@ -402,6 +400,6 @@ def cost_of_two_level_15to1(
         distilled_magic_state_error_rate=float(pout),
         qubits=nqubits,
         distillation_time_in_cycles=float(ncycles),
-        dimensions=(6 * dx + dm2 + max(dx2 - 3 * dx, 0), dx + 4 * dz),
+        dimensions=(2 * nl1 * (dx + 4 * dz) + 2 * (dx2 + 4 * dz2), 6 * dx + dm2 + max(dx2 - 3 * dx, 0)),
         n_t_gates_produced_per_distillation=1,
     )

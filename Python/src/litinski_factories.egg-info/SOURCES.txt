@@ -11,6 +11,7 @@ src/litinski_factories/best_factories/__init__.py
 src/litinski_factories/best_factories/small_footprint.py
 src/litinski_factories/factory_plotting/__init__.py
 src/litinski_factories/factory_plotting/plot_error_rate_scaling.py
+src/litinski_factories/factory_plotting/plot_factory_data_simple.py
 src/litinski_factories/factory_plotting/plot_small_footprint_factory_data.py
 src/litinski_factories/factory_searching/__init__.py
 src/litinski_factories/factory_searching/error_rate_scaling.py

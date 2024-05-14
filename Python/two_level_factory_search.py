@@ -5,8 +5,9 @@ from multiprocessing import Pool
 import pandas as pd
 from datetime import datetime
 
-from ..magic_state_factory import MagicStateFactory
-from ..factory_simulation.twolevel15to1 import cost_of_two_level_15to1
+from magic_state_factory import MagicStateFactory
+from twolevel15to1 import cost_of_two_level_15to1
+from smallfootprint import cost_of_two_level_15to1_small_footprint
 import math
 import itertools
 
@@ -16,7 +17,7 @@ def objective(factory: MagicStateFactory) -> mp.mpf:
 
 
 step_size: int = 2
-pphys = 10**-3
+pphys = 10**-5
 
 
 # find the best factory which has less than 1000 qubits.
@@ -42,7 +43,9 @@ class SimulationTwoLevel15to1SmallFootprint:
         self.dz2 = dz2
         self.dm2 = dm2
         self.n1 = n1
-        self.factory = cost_of_two_level_15to1(pphys, dx, dz, dm, dx2, dz2, dm2, n1)
+        self.factory = cost_of_two_level_15to1(
+            pphys, dx, dz, dm, dx2, dz2, dm2, n1
+        )
         print(
             f"{tag}: {self.factory.name}; rating={self.rating()}; qubits={self.factory.qubits}"
         )
@@ -66,7 +69,6 @@ df = pd.DataFrame(
         "error_rate",
         "qubits",
         "code_cycles",
-        "dimensions",
     ]
 )
 
@@ -86,7 +88,6 @@ def log_simulation(sim: SimulationTwoLevel15to1SmallFootprint) -> None:
         "error_rate": sim.factory.distilled_magic_state_error_rate,
         "qubits": sim.factory.qubits,
         "code_cycles": sim.factory.distillation_time_in_cycles,
-        "dimensions": sim.factory.dimensions,
     }
     df.loc[len(df)] = new_row  # type: ignore
 
@@ -95,27 +96,15 @@ def search_for_optimal_factory():
 
     round_number = 0
     num_threads = 20
-    # all_combos = list(
-    #     itertools.product(
-    #         range(3, 10, 2),
-    #         range(1, 8, 2),
-    #         range(1, 8, 2),
-    #         range(3, 16, 2),
-    #         range(1, 8, 2),
-    #         range(1, 8, 2),
-    #         range(2, 7, 2),
-    #     )
-    # )
-
     all_combos = list(
         itertools.product(
-            range(3, 4, 2),
-            range(1, 2, 2),
-            range(1, 2, 2),
-            range(3, 4, 2),
-            range(1, 2, 2),
-            range(1, 2, 2),
-            range(2, 3, 2),
+            range(3, 10, 2),
+            range(1, 8, 2),
+            range(1, 8, 2),
+            range(3, 16, 2),
+            range(1, 8, 2),
+            range(1, 8, 2),
+            range(2, 7, 2),
         )
     )
 
@@ -144,7 +133,7 @@ def search_for_optimal_factory():
                     log_simulation(job.get())
     finally:
         df.to_csv(
-            f'Simulation_Data/small_footprint_two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
+            f'Simulation_Data/two_level_15to1_simulations-{datetime.now().strftime("%Y-%m-%d-%H-%M")}.csv',
             mode="a",
             index=False,
             header=True,

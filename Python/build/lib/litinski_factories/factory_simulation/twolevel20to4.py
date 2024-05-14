@@ -566,8 +566,6 @@ def cost_of_two_level_20to4(
     # Compute level-2 output error from the infidelity between the post-selected state and the ideal output state
     pout = (1 - trace(outpostsel2 * ideal20to4)).real
 
-    breakpoint()
-
     # Full-distance computation: determine full distance required for a 100-qubit / 10000-qubit computation
     def logerr1(d):
         return float(231 / (pout / 4) * d * plog(pphys, d) - 0.01)
@@ -592,5 +590,6 @@ def cost_of_two_level_20to4(
         distilled_magic_state_error_rate=float(pout / 4),
         qubits=nqubits,
         distillation_time_in_cycles=float(ncycles),
+        dimensions=(-1, -1),
         n_t_gates_produced_per_distillation=4,
     )

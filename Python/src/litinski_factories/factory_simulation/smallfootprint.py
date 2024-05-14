@@ -891,6 +891,6 @@ def cost_of_two_level_15to1_small_footprint(
         distilled_magic_state_error_rate=float(pout),
         qubits=nqubits,
         distillation_time_in_cycles=float(ncycles),
-        dimensions=(4 * dz2 + dx2 + dm2 + 3 * dx, 2 * dx2),
+        dimensions=(dx2 + 4 * dz2 + 2 * dm2 + 3 * dx, max(2 * dx2, dx + 4 * dz),
         n_t_gates_produced_per_distillation=1,
     )

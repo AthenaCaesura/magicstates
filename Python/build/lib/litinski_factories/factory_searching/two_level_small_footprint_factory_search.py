@@ -16,7 +16,7 @@ def objective(factory: MagicStateFactory) -> mp.mpf:
 
 
 step_size: int = 2
-pphys = 10**-5
+pphys = 10**-3
 
 
 # find the best factory which has less than 1000 qubits.
@@ -48,7 +48,7 @@ class SimulationTwoLevel15to1SmallFootprint:
         )
 
     def rating(self) -> mp.mpf:
-        return -math.log10(self.factory.distilled_magic_state_error_rate)
+        return self.factory.distilled_magic_state_error_rate
 
 
 df = pd.DataFrame(

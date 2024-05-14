@@ -16,7 +16,7 @@ def objective(factory: MagicStateFactory) -> mp.mpf:
 
 
 step_size: int = 2
-pphys = 10**-5
+pphys = 10**-3
 
 
 # find the best factory which has less than 1000 qubits.
